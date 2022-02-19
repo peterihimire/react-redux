@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+
+import "./App.css";
+// redux things
+import { createStore } from "redux";
+// react-redux - Provider - wraps app , connect - used in  components
+import { Provider } from "react-redux";
+import reducer from "./store/reducers/reducer";
+import AlertPage from "./pages/AlertPage";
+
+// intial store which is the state
+const initialStore = {
+  alertW: "",
+};
+
+// store
+const store = createStore(reducer, initialStore);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Provider store={store}>
+        <AlertPage />
+      </Provider>
     </div>
   );
 }
